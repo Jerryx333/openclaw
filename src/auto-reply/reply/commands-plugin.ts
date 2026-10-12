@@ -33,6 +33,8 @@ export const handlePluginCommand: CommandHandler = async (
   const result = await executePluginCommand({
     command: match.command,
     args: match.args,
+    agentId: params.agentId,
+    sessionKey: params.sessionKey,
     senderId: command.senderId,
     channel: command.channel,
     channelId: command.channelId,

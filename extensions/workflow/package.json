@@ -1,0 +1,15 @@
+{
+  "name": "@openclaw/workflow",
+  "version": "2026.3.31",
+  "private": true,
+  "description": "OpenClaw workflow orchestration MVP plugin",
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

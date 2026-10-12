@@ -1,0 +1,41 @@
+{
+  "id": "workflow",
+  "name": "Workflow",
+  "description": "Minimal task workflow layer for planner/executor/reviewer/patrol loops.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "dbPath": {
+        "type": "string",
+        "description": "Optional absolute or home-relative path to the workflow SQLite database."
+      },
+      "roles": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "planner": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "reviewer": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "patrol": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "staleMinutes": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "assigned": { "type": "number", "minimum": 1 },
+          "inProgress": { "type": "number", "minimum": 1 }
+        }
+      }
+    }
+  }
+}

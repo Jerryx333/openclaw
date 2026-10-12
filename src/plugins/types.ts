@@ -964,6 +964,10 @@ export type OpenClawPluginGatewayMethod = {
  * Context passed to plugin command handlers.
  */
 export type PluginCommandContext = {
+  /** Current resolved agent id when the conversation/session is bound to one */
+  agentId?: string;
+  /** Current resolved session key when available */
+  sessionKey?: string;
   /** The sender's identifier (e.g., Telegram user ID) */
   senderId?: string;
   /** The channel/surface (e.g., "telegram", "discord") */

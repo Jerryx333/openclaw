@@ -1,0 +1,21 @@
+{
+  plugins: {
+    entries: {
+      workflow: {
+        enabled: true,
+        config: {
+          dbPath: "~/.openclaw/plugins/workflow/workflow.sqlite",
+          roles: {
+            planner: ["pm"],
+            reviewer: ["qa"],
+            patrol: ["ops"],
+          },
+          staleMinutes: {
+            assigned: 30,
+            inProgress: 120,
+          },
+        },
+      },
+    },
+  },
+}

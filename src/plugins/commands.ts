@@ -180,6 +180,8 @@ function resolveBindingConversationFromCommand(params: {
 export async function executePluginCommand(params: {
   command: RegisteredPluginCommand;
   args?: string;
+  agentId?: string;
+  sessionKey?: string;
   senderId?: string;
   channel: string;
   channelId?: PluginCommandContext["channelId"];
@@ -214,6 +216,8 @@ export async function executePluginCommand(params: {
   });
 
   const ctx: PluginCommandContext = {
+    agentId: params.agentId,
+    sessionKey: params.sessionKey,
     senderId,
     channel,
     channelId: params.channelId,

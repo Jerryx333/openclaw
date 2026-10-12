@@ -330,4 +330,43 @@ describe("registerPluginCommand", () => {
       }),
     );
   });
+
+  it("forwards resolved agentId and sessionKey into plugin command context", async () => {
+    const handler = async (ctx: { agentId?: string; sessionKey?: string }) => ({
+      text: JSON.stringify({
+        agentId: ctx.agentId ?? null,
+        sessionKey: ctx.sessionKey ?? null,
+      }),
+    });
+    registerPluginCommand("demo-plugin", {
+      name: "ctxcheck",
+      description: "Context check",
+      acceptsArgs: false,
+      handler,
+    });
+
+    const result = await executePluginCommand({
+      command: {
+        name: "ctxcheck",
+        description: "Context check",
+        acceptsArgs: false,
+        handler,
+        pluginId: "demo-plugin",
+      },
+      agentId: "main",
+      sessionKey: "agent:main:discord:thread-1",
+      channel: "discord",
+      senderId: "123",
+      isAuthorizedSender: true,
+      commandBody: "/ctxcheck",
+      config: {} as never,
+    });
+
+    expect(result.text).toBe(
+      JSON.stringify({
+        agentId: "main",
+        sessionKey: "agent:main:discord:thread-1",
+      }),
+    );
+  });
 });
